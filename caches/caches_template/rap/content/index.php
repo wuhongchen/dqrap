@@ -1,0 +1,450 @@
+<?php defined('IN_PHPCMS') or exit('No permission resources.'); ?><?php include template("content","header"); ?>
+<body class="home">
+
+<!-- REMOVE THIS - FOR DEMO PURPOSES ONLY -->
+
+<div id="switcher" class="hidden-phone">
+
+  <div class="handle">
+    <i class="">团队音频作品</i>
+  </div>
+
+</div>
+ <script type="text/javascript">
+        $(document).ready(function(){
+
+            $('#switcher').ttwMusicPlayer(myPlaylist);
+        });
+    var myPlaylist = [
+    <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=216fb225afdd0a107b97b7c7fb577ba4&action=lists&catid=13&order=id+DESC&num=10\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'13','order'=>'id DESC','limit'=>'10',));}?>
+	<?php $n=1; if(is_array($data)) foreach($data AS $key => $val) { ?>
+        {
+            mp3:'<?php echo $val['music'];?>',
+            title:'<?php echo $val['title'];?>',
+            artist:'<?php echo $val['description'];?>',
+            rating:4,
+            cover:'<?php echo $val['thumb'];?>'
+        },
+     <?php $n++;}unset($n); ?>
+	<?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+    ];
+    </script>
+<!-- END REMOVE -->
+
+	<div class="wrapper">
+
+		<div class="flexslider" id="home">
+
+			<div class="dots"></div>
+			
+			<ul class="slides">
+			<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=21cdc63eecd416f1f26b89699f47ddc5&action=lists&catid=11&order=id+DESC&num=6\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'11','order'=>'id DESC','limit'=>'6',));}?>
+				<?php $n=1; if(is_array($data)) foreach($data AS $key => $val) { ?>
+				<style type="text/css"> 
+				#home.flexslider .slide<?php echo $val['id'];?> {
+					background-image:url('<?php echo $val['img_url'];?>');}
+				</style>
+				<li class="slide<?php echo $val['id'];?>">
+						
+					<div class="container">
+
+						<div class="slide-content">
+							
+							<!-- <h1 class="hero"><?php echo $val['title'];?><span>The ultimate theme</span></h1> -->
+							<!-- <a class="button get-started" href="#">开始</a> -->
+							
+						</div> <!-- /.slide-content -->
+						
+					</div> <!-- /.container -->
+
+				</li> <!-- /.slide1 -->
+				<?php $n++;}unset($n); ?>
+			<?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+			</ul>
+			
+		</div> <!-- /#home.flexslider -->
+
+		<header class="main">
+
+			<div class="container">
+			
+				<a href="#" class="logo"><img src="<?php echo IMG_PATH;?>rap/logo.png" alt="Economizer" /></a>
+
+				<nav class="mobile hidden-desktop pull-right">
+
+					<select class="mobile-nav">
+						<option value=".home">首页</option>
+						<option value=".our-work">我们的作品</option>
+						<option value=".our-team">我们的团队</option>
+						<option value=".our-company">关于我们</option>
+						<option value=".contact">联系我们</option>
+					</select>
+
+				</nav> <!-- nav.mobile -->
+
+				<nav class="main nav-collapse visible-desktop">
+
+					<ul class="inline">
+						<li><a href=".home">首页</a></li>
+						<li><a href=".our-work">我们的作品</a></li>
+						<li><a href=".our-team">我们的团队</a></li>
+						<li><a href=".our-company">关于我们</a></li>
+						<li><a href=".contact">联系我们</a></li>
+					</ul>
+
+				</nav> <!-- /nav.main -->
+				
+			</div> <!-- /.container -->
+
+		</header> <!-- /header.main -->
+		<section class="our-work">
+
+			<div class="container">
+			
+				<h1 class="hero">我们的作品</h1>
+				<!-- <p class="sub-hero">Check out some of the stuff we've created</p> -->
+
+				<div class="portfolio-controls clearfix">
+
+<!-- 					<ul id="portfolio-filters" class="inline nmp none pull-left">
+						<li><a href="#" data-filter="">all</a></li>
+						<li><a href="#" data-filter=".creative">creative</a></li>
+						<li><a href="#" data-filter=".business">business</a></li>
+						<li><a href="#" data-filter=".artwork">artwork</a></li>
+					</ul> -->
+
+<!-- 					<div class="pull-right hidden-phone">
+
+						<span>Columns:</span>
+						<select id="portfolio-selector">
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+
+					</div> --> <!-- /.pull-right -->
+
+				</div> <!-- /.portfolio-controls --> 
+
+				<div id="portfolio" data-columns="4">
+    			<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=dc82a1fd0c90610eadfd02280b539d26&action=lists&catid=12&order=id+DESC&num=6\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'12','order'=>'id DESC','limit'=>'6',));}?>
+				<?php $n=1; if(is_array($data)) foreach($data AS $key => $val) { ?>
+			        <article class="portfolio creative">
+			          <a href="<?php echo $val['video_url'];?>"  target="_blank" >
+			            <div class="holder">
+			              <div class="mask"></div>
+			              <div class="type">
+			              <!--   <i class="icon icon-picture"></i> -->
+			              </div>
+			              <div class="caption">
+			                <p><?php echo $val['title'];?></p>
+			              </div>
+			              <img src="<?php echo $val['thumb'];?>" alt="Portfolio Item" />
+			            </div>
+			          </a>   
+			        </article>
+			       <?php $n++;}unset($n); ?>
+			       <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+
+			    </div> <!-- /#portfolio -->
+				
+			</div> <!-- /.container -->
+
+		</section> <!-- /.our-work -->
+
+		<section class="portfolio-single">
+			
+			<a class="portfolio-back">Close</a>
+			<div class="container">
+
+				<h1 class="portfolio-title hero"></h1>
+				<p class="sub-hero portfolio-subtitle"></p>
+
+				<div class="basket"></div> <!-- /.basket -->
+
+			</div> <!-- /.container -->
+
+		</section> <!-- /.portfolio-single-->
+
+
+		<section class="experts bordered transparent center">
+
+			<div class="container">
+			
+				<h1 class="hero">rao含义</h1>
+				<p class="center sub-hero">rap是一个黑人俚语中的词语，相当于“谈话”（talking），中文意思为说唱。产自纽约贫困黑人聚居区。它以在机械的节奏声的背景下，快速地诉说一连串押韵的诗句为特征。这种形式来源之一是过去电台节目主持人在介绍唱片时所用的一种快速的、押韵的行话性的语言。</p>
+				<!-- <a class="button" href="#">Find out more</a> -->
+				
+			</div> <!-- /.container -->
+
+		</section> <!-- /.experts -->
+
+		<section class="our-team">
+
+			<div class="container">
+			
+				<h1 class="hero">我们的团队</h1>
+				<p class="sub-hero">Talented members of our team</p>
+
+				<div class="members clearfix">
+				<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=3f639a3aa390fb5a156addb951f737a6&action=lists&catid=10&order=id+DESC&num=6\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'10','order'=>'id DESC','limit'=>'6',));}?>
+				<?php $n=1; if(is_array($data)) foreach($data AS $key => $val) { ?>
+					<div class="member">
+						<div class="overlay"></div>
+						<img src="<?php echo $val['thumb'];?>" alt="Ferrol Cheyne" />
+						<p class="name to-right"><?php echo $val['title'];?></p>
+						<p class="position to-right"><?php echo $val['keywords'];?></p>
+						<p class="info to-right"><?php echo $val['description'];?></p>
+<!-- 						<ul class="social to-right">
+				            <li><a href="#">F</a></li>
+				            <li><a href="#">T</a></li>
+				            <li><a href="#">U</a></li>
+				            <li><a href="#">X</a></li>
+				        </ul> -->
+						
+					</div>
+					<?php $n++;}unset($n); ?>
+					<?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+					 <!-- /.member -->
+				</div> <!-- /.members -->
+				
+			</div> <!-- /.container -->
+
+		</section> <!--/.our-team -->
+		<section class="testimonials transparent bordered">
+
+			<div class="container">
+			
+				<h1 class="hero">中国的说唱</h1>
+
+				<div class="flexslider quotes">
+
+					<ul class="slides">
+						<li>
+							<p class="large">要说中文Rap，必须要从三个方面来说：粤语Rap，台语（闽南语）Rap和国语Rap。其中粤语和台语Rap都明显要早于国语Rap。而这三种中文Rap的起源和萌芽阶段是如何产生发展的呢？
+							粤语Rap，要说第一首粤语Rap歌就是林子祥的《ah lam日记》，随后，1993年葛民辉和林海峰组成了软硬天师，发行专辑《广播道软硬杀人事件》把粤语Rap达到了一个巅峰的境界~</p>
+						</li>
+						<li>
+							<p class="large">台语（闽南语）Rap，1990年初，从美国洛杉矶来到台湾的黄立成，黄立行和林智文组成了LA。BoyZ，真正的把美式的嘻哈带到了台湾。当时在台湾掀起了Hip——Hop的风潮~</p>
+						</li>
+						<li>
+							<p class="large">rap这一起源于美国的音乐形式，在中国与中华民族音乐融合，随着音乐多元化，很多职业的歌手都采用rap这一表现形式，</p>
+						</li>
+					</ul>
+
+				</div>
+				
+			</div> <!-- /.container -->
+
+		</section> <!-- /.testimonials -->
+
+
+		
+		<section class="our-company">
+
+			<div class="container">
+
+				<h1 class="hero">关于我们</h1>
+
+				<div class="row-fluid">
+				
+					<div class="span6">
+					
+						<h5 class="primary">东青组简介</h5>
+						<p>东青组 成立于2008年
+						其主要团员  MC文（刘文） Lil.Star（奚大野） Resk（武成杰）<br>
+						东青组自成立以来，一直致力于长春本土说唱音乐文化发展。
+						团员先后曾发表 个人音乐专辑 如：《拼命》、《拼命2008》（刘文）《大野芳飞》、《4-1-9》（奚大野）
+						音乐风格以中文说唱为主，并掺杂R&B、Rock、重金属说唱风格。
+						在长春本地，东青组主办与协办本土说唱Free style battle “唇枪舌剑”，“Iron MIC”，等多项活动
+						推选与培养多名青年说唱爱好与从业者，
+						2013年、东青组发行单曲《小城の早晨》，并将此曲定位为新青年城市形象单曲，
+						期望以此曲唤醒长春青年人的热忱思想：热爱城市，清洁城市，让家园积极，健康，阳光起来。</p>
+
+<!-- 						<div class="row-fluid">
+
+							<div class="span6">
+
+								<h6>团队目标</h6>
+								<ul class="fancy-list" data-icon="icon-ok">
+									<li></li>
+									<li></li>
+									<li>Third item in the list</li>
+								</ul>
+
+							</div> 
+
+							<div class="span6">
+
+								<h6>Reliable</h6>
+								<ul class="fancy-list" data-icon="icon-thumbs-up">
+									<li>List item</li>
+									<li>Second list item</li>
+									<li>Third item in the list</li>
+								</ul>
+
+							</div> 
+
+						</div> 	 -->
+						
+					</div> <!-- /.span4 center -->
+					
+					<div class="span6">
+					
+						<h5 class="primary">Our Skills</h5>
+						<ul class="skills nmp none">
+
+			                <li data-width="100">
+			                  <span>团结</span>
+			                  <div class="background">
+			                    <div></div>
+			                  </div>
+			                </li>
+
+			                <li data-width="100">
+			                  <span>影响力</span>
+			                  <div class="background">
+			                    <div></div>
+			                  </div>
+			                </li>
+
+			                <li data-width="100">
+			                  <span>创造力</span>
+			                  <div class="background">
+			                    <div></div>
+			                  </div>
+			                </li>
+
+			               <!--  <li data-width="60">
+			                  <span>WordPress</span>
+			                  <div class="background">
+			                    <div></div>
+			                  </div>
+			                </li>
+
+			                <li data-width="50">
+			                  <span>jQuery</span>
+			                  <div class="background">
+			                    <div></div>
+			                  </div>
+			                </li> -->
+
+			             </ul>
+						
+					</div> <!-- /.span4 center -->
+					
+				</div> <!-- /.row-fluid -->	
+				
+			</div> <!-- /.container -->
+
+		</section> <!-- /.features -->
+		
+
+		<footer class="main contact">
+
+			<div class="container">
+			
+				<h1 class="hero">联系我们</h1>
+
+				<div id="results">
+	              <div class="alert alert-error" id="error">
+	                  Please fill in all required fields.
+	              </div>  
+	              <div class="alert alert-success" id="success">
+	                  Thanks for getting in touch. We will get back to you shortly!
+	              </div>
+	            </div>
+
+	          	<img src="<?php echo IMG_PATH;?>rap/loading.gif" alt="Loading" id="loading" />
+
+				<div class="row-fluid">
+				
+<!-- 					<div class="span2">
+					
+						<h6><i class="icon-pushpin"></i>Address</h6>
+
+						<address>
+							12 Ambient Gardens, <br />
+							Manhattan, <br />
+							New York <br />
+							10264 <br />
+							United States
+						</address>
+						
+					</div>  --><!-- /.span3 --> 	
+
+					<div class="span3">
+					
+						<h6><i class="icon-envelope"></i>Email</h6>
+
+						<p>18686607080@163.com<br /></p>
+						<hr />
+
+<!-- 						<h6><i class="icon-phone"></i>Phone</h6>
+
+						<p>+44 141 639 2872 <br/>
+						+44 141 632 4752</p> -->
+						
+					</div> <!-- /.span3 --> 
+
+					<div class="span6 offset1">
+					
+					<script language='javascript' src='<?php echo APP_PATH;?>index.php?m=formguide&c=index&a=show&formid=17&action=js&siteid=1'></script>
+					</div> <!-- /.span6 --> 
+					
+				</div> <!-- /.row-fluid -->
+				
+			</div> <!-- /.container -->
+
+			<div class="copyright clearfix">
+				
+				<div class="container">
+				
+					<div class="pull-left">
+						
+						<p>Copyright &copy; 2014 东青组</p>
+						
+					</div> <!-- /.pull-left -->
+
+					<div class="pull-right">
+						
+						<nav class="footer">
+
+
+						</nav> <!-- /nav.footer -->
+						
+					</div> <!-- /.pull-right -->
+					
+				</div> <!-- /.container -->
+					
+			</div> <!-- /.copyright -->
+
+		</footer> <!-- /footer.main -->
+		
+	</div> <!-- /.wrapper -->	
+
+	<script type="text/javascript" src="<?php echo JS_PATH;?>/rap/bootstrap.js"></script>
+	<script type="text/javascript" src="<?php echo JS_PATH;?>/rap/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="<?php echo JS_PATH;?>/rap/jquery.flexslider.js"></script>
+	<script type="text/javascript" src="<?php echo JS_PATH;?>/rap/jquery.debouncedresize.js"></script>
+	<script type="text/javascript" src="<?php echo JS_PATH;?>/rap/jquery.actual.js"></script>
+<!-- 	<script type="text/javascript" src="<?php echo JS_PATH;?>/rap/retina.js"></script> -->
+	<script type="text/javascript" src="<?php echo JS_PATH;?>/rap/jquery.isotope.min.js"></script>
+	<script type="text/javascript" src="<?php echo JS_PATH;?>/rap/custom.js"></script>
+	<script type="text/javascript" src="<?php echo JS_PATH;?>/rap/portfolio.js"></script>
+	<script type="text/javascript" src="<?php echo JS_PATH;?>/rap/blog.js"></script>
+	<script type="text/javascript" src="<?php echo JS_PATH;?>/rap/form.js"></script>
+	<script type="text/javascript">
+
+		jQuery(document).ready(function($) {
+
+
+		});
+
+	</script>
+	<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F80c85ca72740075b3a84b08789ddc23a' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>
