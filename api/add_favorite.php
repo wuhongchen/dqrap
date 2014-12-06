@@ -27,6 +27,7 @@ $phpcms_auth = param::get_cookie('auth');
 if($phpcms_auth) {
 	$auth_key = md5(pc_base::load_config('system', 'auth_key').$_SERVER['HTTP_USER_AGENT']);
 	list($userid, $password) = explode("\t", sys_auth($phpcms_auth, 'DECODE', $auth_key));
+	$userid = intval($userid);
 	if($userid >0) {
 
 	} else {

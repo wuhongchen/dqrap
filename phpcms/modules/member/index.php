@@ -65,7 +65,7 @@ class index extends foreground {
 			$userinfo['nickname'] = (isset($_POST['nickname']) && is_username($_POST['nickname'])) ? $_POST['nickname'] : '';
 			
 			$userinfo['email'] = (isset($_POST['email']) && is_email($_POST['email'])) ? $_POST['email'] : exit('0');
-			$userinfo['password'] = isset($_POST['password']) ? $_POST['password'] : exit('0');
+			$userinfo['password'] = (isset($_POST['password']) && is_badword($_POST['password'])==false) ? $_POST['password'] : exit('0');
 			
 			$userinfo['email'] = (isset($_POST['email']) && is_email($_POST['email'])) ? $_POST['email'] : exit('0');
 
@@ -176,7 +176,7 @@ class index extends foreground {
 					if($member_setting['enablemailcheck']) {
 						pc_base::load_sys_func('mail');
 						$phpcms_auth_key = md5(pc_base::load_config('system', 'auth_key'));
-						$code = sys_auth($userid.'|'.$phpcms_auth_key, 'ENCODE', $phpcms_auth_key);
+						$code = sys_auth($userid.'|'.SYS_TIME, 'ENCODE', $phpcms_auth_key);
 						$url = APP_PATH."index.php?m=member&c=index&a=register&code=$code&verify=1";
 						$message = $member_setting['registerverifymessage'];
 						$message = str_replace(array('{click}','{url}','{username}','{email}','{password}'), array('<a href="'.$url.'">'.L('please_click').'</a>',$url,$userinfo['username'],$userinfo['email'],$password), $message);
@@ -296,7 +296,7 @@ class index extends foreground {
 		//验证邮箱格式
 		pc_base::load_sys_func('mail');
 		$phpcms_auth_key = md5(pc_base::load_config('system', 'auth_key'));
-		$code = sys_auth($_userid.'|'.$phpcms_auth_key, 'ENCODE', $phpcms_auth_key);
+		$code = sys_auth($userid.'|'.SYS_TIME, 'ENCODE', $phpcms_auth_key);
 		$url = APP_PATH."index.php?m=member&c=index&a=register&code=$code&verify=1";
 		
 		//读取配置获取验证信息
@@ -1719,6 +1719,10 @@ class index extends foreground {
 			$email = $_SESSION['email'];
 			if($email){
 				if(!preg_match('/^([a-z0-9_]+)@([a-z0-9_]+).([a-z]{2,6})$/',$email)) exit('check email error');
+				if($_SESSION['emc_times']=='' || $_SESSION['emc_times']<=0){
+					showmessage("验证次数超过5次,验证码失效，请重新获取邮箱验证码！",HTTP_REFERER,3000);
+				}
+				$_SESSION['emc_times'] = $_SESSION['emc_times']-1;
 				if($_SESSION['emc']!='' && $_POST['email_verify']==$_SESSION['emc']) {
 					
 					$userid = $_SESSION['userid'];
@@ -1758,7 +1762,8 @@ class index extends foreground {
 	public function public_get_email_verify() {
 		pc_base::load_sys_func('mail');
 		$this->_session_start();
-		$code = $_SESSION['emc'] = random(6);
+		$code = $_SESSION['emc'] = random(8,"23456789abcdefghkmnrstwxy");
+		$_SESSION['emc_times']=5;
 		$message = '您的验证码为：'.$code;
 
 		sendmail($_SESSION['email'], '邮箱找回密码验证', $message);

@@ -422,6 +422,9 @@ class index extends phpsso {
 	 */
 	public function getapplist() {
 		$applist = getcache('applist', 'admin');
+		foreach($applist as $key=>$value){
+			unset($applist[$key]['authkey']);
+		}
 		exit(serialize($applist));
 	}
 	
@@ -573,7 +576,7 @@ class index extends phpsso {
 		
 		//根据用户id创建文件夹
 		if(isset($this->data['uid']) && isset($this->data['avatardata'])) {
-			$this->uid = $this->data['uid'];
+			$this->uid = intval($this->data['uid']);
 			$this->avatardata = $this->data['avatardata'];
 		} else {
 			exit('0');

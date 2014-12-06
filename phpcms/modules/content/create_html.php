@@ -87,7 +87,6 @@ class create_html extends admin {
 					$this->urls($r['id'], $r['catid'], $r['inputtime'], $r['prefix']);
 
 				}
-
 				if($pages > $page) {
 					$page++;
 					$http_url = get_url();

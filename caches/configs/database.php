@@ -2,8 +2,8 @@
 
 return array (
 	'default' => array (
-		'hostname' => 'localhost',
-		'database' => 'phpcms',
+		'hostname' => '127.0.0.1',
+		'database' => 'dq_cms',
 		'username' => 'root',
 		'password' => '123456',
 		'tablepre' => 'v9_',
