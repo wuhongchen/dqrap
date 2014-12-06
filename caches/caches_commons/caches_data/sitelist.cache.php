@@ -10,8 +10,8 @@ return array (
     'keywords' => '东青组-长春说唱团队-MC文(刘文)-Lil.Star(奚大野) -Resk(武成杰)',
     'description' => '东青组-长春说唱团队-MC文(刘文)-Lil.Star(奚大野) -Resk(武成杰)团员先后曾发表 个人音乐专辑 如：《拼命》、《拼命2008》（刘文）《大野芳飞》、《4-1-9》（奚大野） 						音乐风格以中文说唱为主，并掺杂R&B、Rock、重金属说唱风格。',
     'release_point' => '',
-    'default_style' => 'dqrap',
-    'template' => 'dqrap',
+    'default_style' => 'light',
+    'template' => 'light',
     'setting' => 'array (
   \'upload_maxsize\' => \'2048\',
   \'upload_allowext\' => \'jpg|jpeg|gif|bmp|png|doc|docx|xls|xlsx|ppt|pptx|pdf|txt|rar|zip|swf\',
